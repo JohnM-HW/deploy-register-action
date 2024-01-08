@@ -1,0 +1,14 @@
+name: Send Payload to App (Python)
+description: Sends a payload to the specified app endpoint using Python
+runs:
+  using: 'python'
+  main: 'actions/send-payload-python/send_payload.py'
+inputs:
+  app-endpoint:
+    description: 'The endpoint to send the payload to'
+    required: true
+  app-name:
+    description: 'The name of the app'
+    required: true
+outputs:
+  none
