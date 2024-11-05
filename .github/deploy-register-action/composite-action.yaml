@@ -1,0 +1,24 @@
+name: Deploy Register Action
+description: Fetches the latest release tag and sends a payload 
+
+runs:
+  using: "composite"
+  steps:
+    - name: Get latest release tag
+      id: get_latest_release
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const latestRelease = await github.repos.getLatestRelease({
+            owner: context.repo.owner,
+            repo: context.repo.repo
+          });
+          core.setOutput('tag_name', latestRelease.data.tag_name);
+
+    - name: Run deploy-register.py
+      run: |
+        ROLLBACK=${{ steps.get_latest_release.outputs.tag_name }} python deploy-register.py
+      env:
+        GITHUB_SHA: ${{ github.sha }}
+        INPUT_APP_NAME: ${{ inputs.app-name }}
+        INPUT_APP_ENDPOINT: ${{ inputs.app-endpoint }}

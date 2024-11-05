@@ -1,8 +1,8 @@
 name: Send Payload to App (Python)
 description: Sends a payload to the specified app endpoint using Python
 runs:
-  using: 'python'
-  main: 'actions/send-payload-python/send_payload.py'
+  using: 'composite'
+  main: 'composite-action.yaml'
 inputs:
   app-endpoint:
     description: 'The endpoint to send the payload to'
