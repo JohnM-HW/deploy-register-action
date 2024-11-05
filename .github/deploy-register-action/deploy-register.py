@@ -7,7 +7,7 @@ payload = {
     'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
     'deployment_version': os.environ['GITHUB_SHA'][:8],
     'app_name': os.environ['INPUT_APP_NAME'],
-    'rollback_version': '1.0.0'
+    'rollback_version': os.environ['ROLLBACK']
 }
 
 #endpoint = os.environ['INPUT_APP_ENDPOINT']
