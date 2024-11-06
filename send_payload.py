@@ -9,7 +9,9 @@ def send_payload():
         'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         'deployment_version': os.getenv('DEPLOYMENT_VERSION'),
         'app_name': os.getenv('APP_NAME'),
+        'app_name': 'today',
         'rollback_version': os.getenv('ROLLBACK_VERSION')
+
     }
     headers = {'Content-Type': 'application/json'}
     response = requests.post(url, data=json.dumps(payload), headers=headers)
