@@ -6,5 +6,5 @@ inputs:
     required: true
     default: 'default value'
 runs:
-  using: 'python'
+  using: actions/setup-python@v5
   main: 'deploy-register.py'
