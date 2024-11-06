@@ -5,6 +5,15 @@ inputs:
     description: 'An example input'
     required: true
     default: 'default value'
-runs:
-  using: actions/setup-python@v5
-  main: 'deploy-register.py'
+jobs:
+  build:
+  runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v5
+
+        with:
+          python-version: '3.10'
+      - name: Run Python script
+        run: deploy-register.py
