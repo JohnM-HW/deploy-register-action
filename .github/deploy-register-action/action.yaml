@@ -24,6 +24,7 @@ runs:
     - name: Run deploy-register.py
       run: |
         ROLLBACK=${{ steps.get_latest_release.outputs.tag_name }} python deploy-register.py
+      shell: bash
       env:
         GITHUB_SHA: ${{ github.sha }}
         INPUT_APP_NAME: ${{ inputs.app-name }}
