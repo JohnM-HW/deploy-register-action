@@ -27,6 +27,7 @@ runs:
     - name: Run Python script
       run: |
         python send_payload.py
+      shell: bash
       env:
         WEBHOOK_URL: ${{ inputs.webhook_url }}
         DEPLOYMENT_VERSION: ${{ inputs.deployment_version }}
