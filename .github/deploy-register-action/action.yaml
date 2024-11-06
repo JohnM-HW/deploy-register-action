@@ -10,5 +10,3 @@ inputs:
   app-name:
     description: 'The name of the app'
     required: true
-outputs:
-  none
