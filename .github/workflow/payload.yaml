@@ -1,0 +1,22 @@
+name: Use Custom Action
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  call-custom-action:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Use Send Payload Action
+        uses: JohnM-HW/deploy-register-action@main
+        with:
+          webhook_url: "https://us-central1-hw-sre.cloudfunctions.net/register"
+          deployment_version: "1.1.1"
+          app_name: "My APP"
+          rollback_version: "0.0.1"
