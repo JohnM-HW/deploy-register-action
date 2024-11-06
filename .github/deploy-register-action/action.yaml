@@ -1,32 +1,10 @@
-name: Send Payload to App (Python)
-description: Sends a payload to the specified app endpoint using Python
+name: 'Deploy Register Action'
+description: 'An action to deploy register'
 inputs:
-  app-endpoint:
-    description: 'The endpoint to send the payload to'
+  example-input:
+    description: 'An example input'
     required: true
-  app-name:
-    description: 'The name of the app'
-    required: true
+    default: 'default value'
 runs:
-  using: 'composite'
-  steps:
-    - name: Get latest release tag
-      id: get_latest_release
-      uses: actions/github-script@v6
-      with:
-        script: |
-          const { data: latestRelease } = await github.rest.repos.getLatestRelease({
-            owner: context.repo.owner,
-            repo: context.repo.repo
-          });
-          core.setOutput('tag_name', latestRelease.tag_name);
-
-    - name: Run deploy-register.py
-      run: |
-        ROLLBACK=${{ steps.get_latest_release.outputs.tag_name }} python .github/deploy-register-action/deploy-register.py
-      shell: bash
-      working-directory: ${{ github.workspace }}
-      env:
-        GITHUB_SHA: ${{ github.sha }}
-        INPUT_APP_NAME: ${{ inputs.app-name }}
-        INPUT_APP_ENDPOINT: ${{ inputs.app-endpoint }}
+  using: 'python'
+  main: 'deploy-register.py'
